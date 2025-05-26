@@ -5,13 +5,21 @@ import com.example.simplebanking.data.FirestoreTransactionObject
 import com.example.simplebanking.data.TransactionListResult
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.firestore.FirebaseFirestore
+import dev.gitlive.firebase.firestore.QuerySnapshot
 import dev.gitlive.firebase.firestore.firestore
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.map
 
 interface FirestoreRepository {
 
     suspend fun createTransaction(transaction: FirestoreTransactionObject)
     // fetch transactions as list
     suspend fun fetchTransactions(): TransactionListResult
+    // fetch transactions as Flow
+    fun getSnapshotFlow(): Flow<FirestoreTransactionObject>
 }
 
 class FirestoreRepositoryImpl : FirestoreRepository {
@@ -39,6 +47,23 @@ class FirestoreRepositoryImpl : FirestoreRepository {
             Logger.withTag(TAG).e { errorMessage }
             return TransactionListResult(errorMessage = errorMessage)
         }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override fun getSnapshotFlow(): Flow<FirestoreTransactionObject> {
+        return Firebase.firestore
+            .collection(COLLECTION_REF)
+            .snapshots
+            .flatMapConcat { querySnapshot: QuerySnapshot ->
+                querySnapshot.documents.asFlow().map { documentSnapshot ->
+                    FirestoreTransactionObject(
+                        email = documentSnapshot.get("email"),
+                        amount = documentSnapshot.get("amount"),
+                        currency = documentSnapshot.get("currency"),
+                        timestamp = documentSnapshot.get("timestamp"),
+                    )
+                }
+            }
     }
 
     private companion object {

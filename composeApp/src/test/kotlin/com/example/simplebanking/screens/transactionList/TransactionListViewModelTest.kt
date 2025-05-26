@@ -1,11 +1,14 @@
 package com.example.simplebanking.screens.transactionList
 
 import app.cash.turbine.test
+import com.example.simplebanking.api.FirestoreRepository
 import com.example.simplebanking.data.FirestoreTransactionObject
+import com.example.simplebanking.data.TransactionListResult
 import com.example.simplebanking.screens.faker.FakeFirestoreRepository
 import dev.gitlive.firebase.firestore.Timestamp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -31,14 +34,16 @@ class TransactionListViewModelTest {
     }
 
     @Test
-    fun testTransactionLoading() = runTest {
+    fun testTransactionLoadingHappyPath() = runTest {
         val firestoreRepository = FakeFirestoreRepository()
-        firestoreRepository.createTransaction(FirestoreTransactionObject(
-            email = TEST_EMAIL,
-            amount = TEST_AMOUNT,
-            currency = TEST_CURRENCY,
-            timestamp = Timestamp.now(),
-        ))
+        firestoreRepository.createTransaction(
+            FirestoreTransactionObject(
+                email = TEST_EMAIL,
+                amount = TEST_AMOUNT,
+                currency = TEST_CURRENCY,
+                timestamp = Timestamp.now(),
+            )
+        )
         val testViewModel = TransactionListViewModel(
             firestoreRepository = firestoreRepository
         )
@@ -55,6 +60,27 @@ class TransactionListViewModelTest {
             assertEquals(TEST_EMAIL, resultTransaction.email)
             assertEquals(TEST_AMOUNT, resultTransaction.amount)
             assertEquals(TEST_CURRENCY, resultTransaction.currency.name)
+        }
+    }
+
+    @Test
+    fun testTransactionLoadingErrorCase() = runTest {
+        val firestoreRepository = object : FirestoreRepository {
+            override suspend fun createTransaction(transaction: FirestoreTransactionObject) {}
+            override suspend fun fetchTransactions() = TransactionListResult(errorMessage = "ERROR")
+            override fun getSnapshotFlow() = flowOf<FirestoreTransactionObject>()
+        }
+        val testViewModel = TransactionListViewModel(
+            firestoreRepository = firestoreRepository
+        )
+
+        testViewModel.uiState.test {
+            // Create a test transaction
+            testViewModel.loadTransactions()
+
+            val result = expectMostRecentItem()
+            assertEquals(TransactionListStatus.ERROR, result.status)
+            assertEquals("ERROR", result.errorMessage)
         }
     }
 

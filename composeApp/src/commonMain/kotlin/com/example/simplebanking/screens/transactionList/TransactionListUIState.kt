@@ -1,7 +1,6 @@
 package com.example.simplebanking.screens.transactionList
 
 import com.example.simplebanking.domain.Currency
-import com.google.type.DateTime
 
 data class TransactionListUIState(
     val status: TransactionListStatus = TransactionListStatus.LOADING,

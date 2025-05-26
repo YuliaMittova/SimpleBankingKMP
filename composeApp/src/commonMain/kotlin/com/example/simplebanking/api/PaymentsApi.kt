@@ -3,10 +3,10 @@ package com.example.simplebanking.api
 import com.example.simplebanking.data.CreateTransactionRequest
 import com.example.simplebanking.domain.Currency
 import io.ktor.client.HttpClient
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType

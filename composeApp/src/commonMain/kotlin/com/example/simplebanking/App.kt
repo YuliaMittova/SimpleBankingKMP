@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.simplebanking.screens.createTransaction.CreateTransactionScreen
 import com.example.simplebanking.screens.mainMenu.MainMenuScreen
-import com.example.simplebanking.screens.transactionList.TransactionListScreen
+import com.example.simplebanking.screens.transactionListFromSnapshot.TransactionListFromSnapshotScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -23,6 +23,9 @@ object CreateTransaction
 
 @Serializable
 object TransactionList
+
+@Serializable
+object TransactionListFromSnapshot
 
 @Composable
 fun App() {
@@ -36,7 +39,8 @@ fun App() {
                 composable<MainMenu> {
                     MainMenuScreen(
                         navigateToCreateTransaction = { navController.navigate(CreateTransaction) },
-                        navigateToTransactionList = { navController.navigate(TransactionList) },
+//                        navigateToTransactionList = { navController.navigate(TransactionList) },
+                        navigateToTransactionList = { navController.navigate(TransactionListFromSnapshot) },
                     )
                 }
                 composable<CreateTransaction> {
@@ -44,8 +48,13 @@ fun App() {
                         navigateBack = { navController.popBackStack() }
                     )
                 }
-                composable<TransactionList> {
-                    TransactionListScreen(
+//                composable<TransactionList> {
+//                    TransactionListScreen(
+//                        navigateBack = { navController.popBackStack() }
+//                    )
+//                }
+                composable<TransactionListFromSnapshot> {
+                    TransactionListFromSnapshotScreen(
                         navigateBack = { navController.popBackStack() }
                     )
                 }

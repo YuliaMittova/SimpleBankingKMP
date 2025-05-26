@@ -2,14 +2,14 @@ package com.example.simplebanking.screens.createTransaction
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.simplebanking.api.PaymentsApi
 import com.example.simplebanking.api.FirestoreRepository
+import com.example.simplebanking.api.PaymentsApi
 import com.example.simplebanking.data.FirestoreTransactionObject
+import com.example.simplebanking.domain.Currency
 import com.example.simplebanking.screens.createTransaction.TransactionCreationStatus.ERROR
+import com.example.simplebanking.screens.createTransaction.TransactionCreationStatus.IDLE
 import com.example.simplebanking.screens.createTransaction.TransactionCreationStatus.SUCCESS
 import com.example.simplebanking.screens.createTransaction.TransactionCreationStatus.TRANSACTION_INITIATED
-import com.example.simplebanking.domain.Currency
-import com.example.simplebanking.screens.createTransaction.TransactionCreationStatus.IDLE
 import dev.gitlive.firebase.firestore.Timestamp
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

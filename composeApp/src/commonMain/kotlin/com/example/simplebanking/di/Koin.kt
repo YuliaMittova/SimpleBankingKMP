@@ -6,6 +6,7 @@ import com.example.simplebanking.api.KtorPaymentsApi
 import com.example.simplebanking.api.PaymentsApi
 import com.example.simplebanking.screens.createTransaction.CreateTransactionViewModel
 import com.example.simplebanking.screens.transactionList.TransactionListViewModel
+import com.example.simplebanking.screens.transactionListFromSnapshot.TransactionListFromSnapshotViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.http.ContentType
@@ -25,13 +26,14 @@ val dataModule = module {
         }
     }
 
-    single<FirestoreRepository> { FirestoreRepositoryImpl()  }
+    single<FirestoreRepository> { FirestoreRepositoryImpl() }
     single<PaymentsApi> { KtorPaymentsApi(get()) }
 }
 
 val viewModelModule = module {
     factoryOf(::CreateTransactionViewModel)
     factoryOf(::TransactionListViewModel)
+    factoryOf(::TransactionListFromSnapshotViewModel)
 }
 
 fun initKoin() {
