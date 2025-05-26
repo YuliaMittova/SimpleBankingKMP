@@ -60,9 +60,14 @@ class CreateTransactionViewModel(
                     currency = currency
                 )
                 _uiState.update {
+                    val message = if (apiResult.isFailure) {
+                        apiResult.exceptionOrNull()?.message
+                    } else {
+                        apiResult.getOrNull()
+                    }
                     it.copy(
                         status = if (apiResult.isFailure) ERROR else SUCCESS,
-                        message = apiResult.getOrNull()
+                        message = message
                     )
                 }
             }

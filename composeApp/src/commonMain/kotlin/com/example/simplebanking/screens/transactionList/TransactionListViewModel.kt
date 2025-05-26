@@ -1,5 +1,6 @@
 package com.example.simplebanking.screens.transactionList
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
@@ -22,7 +23,8 @@ class TransactionListViewModel(
         loadTransactions()
     }
 
-    private fun loadTransactions() {
+    @VisibleForTesting
+    internal fun loadTransactions() {
         _uiState.update {
             it.copy(status = TransactionListStatus.LOADING)
         }
