@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "549124037880",
+    "project_id": "simplebanking-c3d4f",
+    "storage_bucket": "simplebanking-c3d4f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549124037880:android:874ae4854798ba4e2d6f0d",
+        "android_client_info": {
+          "package_name": "com.example.simplebanking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOEXaDqD2A51kZwuz77aZhT0dNTWMoP8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="back">Back</string>
+
+    <string name="create_transaction_main_menu">Create transaction</string>
+    <string name="transaction_list_main_menu">See transaction list</string>
+
+    <string name="loading">Loading...</string>
+    <string name="error_while_loading_transactions">Error occurred while loading transactions</string>
+
+    <string name="transaction_list_title">Transaction List</string>
+    <string name="create_transaction_title">Create transaction</string>
+    <string name="enter_transaction_details">Enter transaction details:</string>
+    <string name="enter_email_label">Enter email</string>
+    <string name="enter_email_placeholder">Type email here:</string>
+    <string name="email_icon_description">Email Icon</string>
+    <string name="enter_amount_label">Enter amount</string>
+    <string name="enter_amount_placeholder">Type amount here:</string>
+    <string name="enter_currency_label">Enter currency</string>
+    <string name="make_transaction">Make a transaction</string>
+</resources>

@@ -1,0 +1,19 @@
+package com.example.simplebanking.screens.transactionList
+
+import com.example.simplebanking.domain.Currency
+
+data class TransactionListUIState(
+    val status: TransactionListStatus = TransactionListStatus.LOADING,
+    val transactionData: List<TransactionData> = emptyList(),
+    val errorMessage: String? = null
+)
+
+data class TransactionData(
+    val email: String,
+    val amount: Double,
+    val currency: Currency,
+)
+
+enum class TransactionListStatus {
+    LOADING, ERROR, SUCCESS
+}
