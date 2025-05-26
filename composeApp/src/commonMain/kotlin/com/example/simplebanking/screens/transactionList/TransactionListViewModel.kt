@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class TransactionListViewModel(
     private val firestoreRepository: FirestoreRepository
@@ -46,9 +48,9 @@ class TransactionListViewModel(
                                 email = it.email,
                                 amount = it.amount,
                                 currency = Currency.valueOf(it.currency),
+                                timestamp = DATE_FORMATTER.format(Date(it.timestamp.seconds * 1000))
                             )
-                        }
-                    )
+                        })
                 }
             }
         }
@@ -56,5 +58,6 @@ class TransactionListViewModel(
 
     private companion object {
         const val TAG = "TransactionListViewModel"
+        val DATE_FORMATTER: SimpleDateFormat = SimpleDateFormat("dd/MM HH:mm")
     }
 }

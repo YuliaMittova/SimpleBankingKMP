@@ -126,6 +126,13 @@ fun TransactionItem(
             style = MaterialTheme.typography.titleMedium,
             color = Color.DarkGray
         )
+
+        Text(
+            modifier = modifier.padding(start = 10.dp),
+            text = transactionData.timestamp,
+            style = MaterialTheme.typography.titleMedium,
+            color = Color.Gray
+        )
     }
 }
 

@@ -10,6 +10,7 @@ import dev.gitlive.firebase.firestore.firestore
 interface FirestoreRepository {
 
     suspend fun createTransaction(transaction: FirestoreTransactionObject)
+    // fetch transactions as list
     suspend fun fetchTransactions(): TransactionListResult
 }
 

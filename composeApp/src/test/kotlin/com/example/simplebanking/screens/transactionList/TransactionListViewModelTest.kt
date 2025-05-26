@@ -3,6 +3,7 @@ package com.example.simplebanking.screens.transactionList
 import app.cash.turbine.test
 import com.example.simplebanking.data.FirestoreTransactionObject
 import com.example.simplebanking.screens.faker.FakeFirestoreRepository
+import dev.gitlive.firebase.firestore.Timestamp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -35,7 +36,8 @@ class TransactionListViewModelTest {
         firestoreRepository.createTransaction(FirestoreTransactionObject(
             email = TEST_EMAIL,
             amount = TEST_AMOUNT,
-            currency = TEST_CURRENCY
+            currency = TEST_CURRENCY,
+            timestamp = Timestamp.now(),
         ))
         val testViewModel = TransactionListViewModel(
             firestoreRepository = firestoreRepository

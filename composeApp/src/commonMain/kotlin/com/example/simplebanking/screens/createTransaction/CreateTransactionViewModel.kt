@@ -10,6 +10,7 @@ import com.example.simplebanking.screens.createTransaction.TransactionCreationSt
 import com.example.simplebanking.screens.createTransaction.TransactionCreationStatus.TRANSACTION_INITIATED
 import com.example.simplebanking.domain.Currency
 import com.example.simplebanking.screens.createTransaction.TransactionCreationStatus.IDLE
+import dev.gitlive.firebase.firestore.Timestamp
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -50,7 +51,8 @@ class CreateTransactionViewModel(
                     FirestoreTransactionObject(
                         email = email,
                         amount = amount,
-                        currency = currency.name
+                        currency = currency.name,
+                        timestamp = Timestamp.now(),
                     )
                 )
 

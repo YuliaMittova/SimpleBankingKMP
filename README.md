@@ -47,7 +47,8 @@ The app is implemented using KMP Compose and KMP shared logic.
 ##  How to run the app
 To start the application it is enough to import it to Android Studio. After importing it you can choose your preferred emulator and run composeApp configuration.
 Here is a short demo:
-<video src="docResources/payments_demo.mp4" width="500" controls></video>
+[Demo](docResources/demo_video.webm)
+<video src="docResources/demo_video.webm" width="500" controls></video>
 
 ## Tests:
 You can find ![JMeter test configuration](docResources/PaymentsAPITesting.jmx) and the test results of 50 concurrent users:
