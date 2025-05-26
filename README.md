@@ -85,4 +85,10 @@ Here is a short demo:
 You can find ![JMeter test configuration](docResources/PaymentsAPITesting.jmx) and the test results of 50 concurrent users:
 ![JMeter test result:](docResources/jmeter_result.png)
 
-Unit tests can be found in commonTest folder.
+Unit tests can be found in commonTest folder and run from the Android Studio.
+
+## KMP Architecture and it's potential:
+To me, Kotlin Multiplatform is an exciting step toward making “write once, run everywhere” a reality for modern development. What I really appreciate about it is the ability to share complex business logic across platforms like Android, iOS, desktop, and even the web—without being locked into a one-size-fits-all solution.
+Of course, every platform has its own quirks and limitations, so the fact that we can still reuse a big part of our codebase is impressive. It not only saves development time but also helps reduce bugs by avoiding duplicated logic.
+In the early days, KMP was quite limited in terms of language features and tooling. But now, it has grown into a much richer ecosystem. We can use Compose Multiplatform for UI, Ktor for API calls, and Koin for dependency injection—all within a shared codebase. Concurrency is also well-supported, which makes async code more manageable.
+What’s really encouraging is how quickly the ecosystem is growing, thanks to the passionate Kotlin community. I see KMP as a very promising way to build reliable, maintainable cross-platform apps—while still giving developers the flexibility to write native code when needed.
